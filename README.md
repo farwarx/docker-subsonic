@@ -1,5 +1,9 @@
-# alpine-subsonic
+# Docker Subsonic with Docker-compose
+Fork from: marcopaganini/alpine-subsonic
 
+2022-11 : in dev
+
+# alpine-subsonic
 This repository contains configuration to build a
 [Subsonic](http://subsonic.org) media streamer [Docker](http://docker.io)
 container. This work was derived from [Michael
