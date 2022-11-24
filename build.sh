@@ -1,2 +1,2 @@
-#! /bin/sh
-docker build -t mpaganini/alpine-subsonic .
+#! /bin/bash
+docker-compose --env-file docker-compose.env -f docker-compose.yaml build

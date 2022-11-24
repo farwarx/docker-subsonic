@@ -1,0 +1,19 @@
+version: '2.2'
+services:
+  subsonic:
+    build:
+      context: .
+      dockerfile: subsonic/Dockerfile
+    image: subsonic:${SUBSONIC_VERSION}
+    restart: always
+    ports:
+      - 4040:${SUBSONIC_localport}
+    volumes:
+      - ${SUBSONIC_MUSIC_DIR}:/var/music:ro
+      - s_state:/var/subsonic
+    mem_limit: ${SUBSONIC_mem_limit}
+    memswap_limit: ${SUBSONIC_memswap_limit}
+    mem_reservation: ${SUBSONIC_mem_reservation}
+    pids_limit: ${SUBSONIC_pids_limit}
+volumes:
+  s_state:
