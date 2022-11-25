@@ -1,19 +1,28 @@
 version: '2.2'
 services:
   subsonic:
+    env_file:
+      - ./docker-compose.env
     build:
-      context: .
-      dockerfile: subsonic/Dockerfile
+      context: subsonic/
+      args:
+        - SUBSONIC_VERSION
+        - SUBSONIC_UID
+        - SUBSONIC_GID
+        - SUBSONIC_HOME
+        - SUBSONIC_BIN
+        - SUBSONIC_MUSIC_DIR
     image: subsonic:${SUBSONIC_VERSION}
     restart: always
     ports:
       - 4040:${SUBSONIC_localport}
     volumes:
-      - ${SUBSONIC_MUSIC_DIR}:/var/music:ro
-      - s_state:/var/subsonic
+      - ${SUBSONIC_HOST_MUSIC_DIR}:${SUBSONIC_MUSIC}:ro
+      - ${SUBSONIC_HOST_HOME}:${SUBSONIC_HOME}:rw
+      - s_bin:${SUBSONIC_BIN}
     mem_limit: ${SUBSONIC_mem_limit}
     memswap_limit: ${SUBSONIC_memswap_limit}
     mem_reservation: ${SUBSONIC_mem_reservation}
-    pids_limit: ${SUBSONIC_pids_limit}
+    pids_limit: 50
 volumes:
-  s_state:
+  s_bin:

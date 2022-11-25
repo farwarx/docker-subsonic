@@ -10,14 +10,14 @@
 #
 ###################################################################################
 
-SUBSONIC_HOME=/var/subsonic
+#SUBSONIC_HOME=/var/subsonic
 SUBSONIC_HOST=0.0.0.0
 SUBSONIC_PORT=4040
 SUBSONIC_HTTPS_PORT=0
 SUBSONIC_CONTEXT_PATH=/
-SUBSONIC_MAX_MEMORY=200
+#SUBSONIC_MAX_MEMORY=200
 SUBSONIC_PIDFILE=
-SUBSONIC_DEFAULT_MUSIC_FOLDER=/var/music
+SUBSONIC_DEFAULT_MUSIC_FOLDER=${SUBSONIC_MUSIC}
 SUBSONIC_DEFAULT_PODCAST_FOLDER=${SUBSONIC_HOME}/podcasts
 SUBSONIC_DEFAULT_PLAYLIST_FOLDER=${SUBSONIC_HOME}/playlists
 
@@ -107,13 +107,13 @@ while [ $# -ge 1 ]; do
 done
 
 # Create Subsonic home directory.
+#    ${SUBSONIC_HOME} \
 mkdir -p \
-    ${SUBSONIC_HOME} \
     ${SUBSONIC_DEFAULT_PODCAST_FOLDER} \
     ${SUBSONIC_DEFAULT_PLAYLIST_FOLDER} \
     /tmp/subsonic
 
-LOG=${SUBSONIC_HOME}/subsonic_sh.log
+LOG=${SUBSONIC_HOME}/subsonic_sh_docker.log
 truncate -s0 ${LOG}
 
 
